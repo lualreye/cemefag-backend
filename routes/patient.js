@@ -9,13 +9,14 @@ const {
   getPatient,
   createPatient,
   updatePatient,
-  deletePatient
+  deletePatient,
 } = require("../controllers/patient");
+const { authMiddleware } = require("../middlewares/session");
 
 // TODO http://localhost/patient GET,POST, DELETE, PUT
 
 // GETTING PATIENTS LIST
-router.get("/", getPatients);
+router.get("/", authMiddleware, getPatients);
 
 // GETTING PATIENT DETAILED
 router.get("/:id", validatorGetPatient, getPatient);

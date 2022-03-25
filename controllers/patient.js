@@ -5,9 +5,10 @@ const { handleHttpError } = require("../utils/customHttpErros");
 // GETTING PATIENTS LIST
 const getPatients = async (req, res) => {
   try {
+    const user = req.user
     const data = await patientModel.find({});
 
-    res.send({ data });
+    res.send({ data, user });
   } catch (e) {
     handleHttpError(res, "ERROR_GET_PATIENTS");
   }
