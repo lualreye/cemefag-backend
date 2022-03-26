@@ -12,22 +12,29 @@ const {
   deletePatient,
 } = require("../controllers/patient");
 const { authMiddleware } = require("../middlewares/session");
+const { checkRole } = require("../middlewares/rol");
 
 // TODO http://localhost/patient GET,POST, DELETE, PUT
 
 // GETTING PATIENTS LIST
-router.get("/", authMiddleware, getPatients);
+router.get("/", authMiddleware, checkRole(["user"]), getPatients);
 
 // GETTING PATIENT DETAILED
-router.get("/:id", validatorGetPatient, getPatient);
+router.get("/:id", authMiddleware, validatorGetPatient, getPatient);
 
 // CREATING NEW PATIENT
-router.post("/", validatorCreatePatient, createPatient);
+router.post("/", authMiddleware, validatorCreatePatient, createPatient);
 
 // UPDATING PATIENT DETAILED
-router.put("/:id", validatorGetPatient, validatorCreatePatient, updatePatient);
+router.put(
+  "/:id",
+  authMiddleware,
+  validatorGetPatient,
+  validatorCreatePatient,
+  updatePatient
+);
 
 // DELETING PATIENT DETAILED
-router.delete("/:id", validatorGetPatient, deletePatient);
+router.delete("/:id", authMiddleware, validatorGetPatient, deletePatient);
 
 module.exports = router;
