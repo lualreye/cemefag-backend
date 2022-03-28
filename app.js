@@ -6,10 +6,14 @@ const express = require("express");
 const cors = require("cors");
 const morganBody = require("morgan-body");
 const loggerStream = require("./utils/handleLogger")
-const dbConnect = require("./config/mongoo");
+const dbConnectNosql = require("./config/mongoo");
+const {dbConnectMysql} = require("./config/mysql")
 
 // INITIALIZING EXPRESS
 const app = express();
+
+// SWITCHING DATABASE
+const ENGINE_DB = process.env.ENGINE_DB
 
 // PREVENTING CORS TROUBLESHOT IN BROWSER
 app.use(cors());
@@ -39,4 +43,4 @@ app.listen(port, () => {
 });
 
 // CONNECTING WITH MONGODB
-dbConnect();
+(ENGINE_DB === "nosql") ? dbConnectNosql() : dbConnectMysql()
