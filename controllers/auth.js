@@ -29,7 +29,6 @@ const loginController = async (req, res) => {
     req = matchedData(req);
     const user = await userModel
       .findOne({ userName: req.userName })
-      .select("userPassword userName userRole");
     if (!user) {
       handleHttpError(res, "USER_DOES_NOT_EXIST");
       return;
