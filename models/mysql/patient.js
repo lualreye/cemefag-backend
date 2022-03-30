@@ -39,4 +39,4 @@ const Patient = sequelize.define(
   }
 );
 
-module.exports = { Patient };
+module.exports = Patient;
