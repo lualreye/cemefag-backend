@@ -4,28 +4,29 @@ const { DataTypes } = require("sequelize");
 const Users = sequelize.define(
   "usuario",
   {
-    userCode: {
+    us_id: {
+      type: DataTypes.NUMBER,
+      allowNull: false,
+    },
+    us_codigo: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userName: {
+    us_nombre: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userLevel: {
+    us_nivel: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userPassword: {
+    us_clave: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userRole: {
-      type: DataTypes.ENUM(["user", "admin"]),
+    us_estado: {
+      type: DataTypes.INTEGER,
     },
-  },
-  {
-    timestamps: true, //TODO SAVING creating_at
   }
 );
 

@@ -1,17 +1,19 @@
 const { matchedData } = require("express-validator");
-const { encrypt } = require("../utils/handlePassword");
 const { tokenSign } = require("../utils/handleJwt");
 const { userModel } = require("../models/index");
 const { handleHttpError } = require("../utils/customHttpErros");
 const { compare } = require("bcryptjs");
+const md5 = require("md5")
 
 const registerController = async (req, res) => {
   try {
     req = matchedData(req);
-    const hashPassword = await encrypt(req.userPassword);
-    const body = { ...req, userPassword: hashPassword };
+    const hashPassword = await md5(req.us_clave);
+    const body = { ...req, us_clave: hashPassword };
+    console.log(body)
     const userData = await userModel.create(body);
-    userData.set("userPassword", undefined, { strict: false });
+    console.log(userData)
+    userData.set("us_clave", undefined, { strict: false });
 
     const data = {
       token: await tokenSign(userData),
@@ -20,7 +22,7 @@ const registerController = async (req, res) => {
 
     res.send({ data });
   } catch (e) {
-    handleHttpError(res, "ERROR_REGISTER_USER");
+    handleHttpError(res, "ERROR_REGISTER_USER_mysql");
   }
 };
 

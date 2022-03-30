@@ -1,6 +1,6 @@
 const ENGINE_DB = process.env.ENGINE_DB
 
-const pathModels = (ENGINE_DB === "nosql") ? './nosel' : "./mysql"
+const pathModels = (ENGINE_DB === "nosql") ? './nosql' : "./mysql"
 
 const models = {
   patientModel: require(`${pathModels}/patient`),
