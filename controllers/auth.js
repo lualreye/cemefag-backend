@@ -11,8 +11,6 @@ const registerController = async (req, res) => {
     const body = { ...req, us_clave: hashPassword };
     console.log(body);
     const userData = await userModel.create(body);
-    console.log("No estamos llegando auqi");
-    console.log(userData);
     userData.set("us_clave", undefined, { strict: false });
 
     const data = {
@@ -22,7 +20,7 @@ const registerController = async (req, res) => {
 
     res.send({ data });
   } catch (e) {
-    handleHttpError(res, "ERROR_REGISTER_USER_mysql");
+    handleHttpError(res, "ERROR_REGISTER_USER");
   }
 };
 
