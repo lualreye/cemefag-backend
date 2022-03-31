@@ -46,7 +46,8 @@ const Agenda = sequelize.define(
     },
   },
   {
-    timestamp: true,
+    timestamp: false,
+    freezeTableName: true
   }
 );
 
