@@ -14,14 +14,14 @@ const registerController = async (req, res) => {
     const userData = await userModel.create(body);
     console.log("No estamos llegando auqi")
     console.log(userData)
-    // userData.set("us_clave", undefined, { strict: false });
+    userData.set("us_clave", undefined, { strict: false });
 
-    // const data = {
-    //   token: await tokenSign(userData),
-    //   user: userData,
-    // };
+    const data = {
+      token: await tokenSign(userData),
+      user: userData,
+    };
 
-    // res.send({ data });
+    res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_REGISTER_USER_mysql", e);
   }
