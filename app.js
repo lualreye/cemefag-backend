@@ -5,7 +5,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const morganBody = require("morgan-body");
-const loggerStream = require("./utils/handleLogger")
+// const loggerStream = require("./utils/handleLogger")
 const dbConnectNosql = require("./config/mongoo");
 const {dbConnectMysql} = require("./config/mysql")
 
@@ -22,13 +22,13 @@ app.use(cors());
 app.use(express.json());
 
 
-morganBody(app, {
-  noColors: true,
-  stream: loggerStream,
-  skip: function(req, res) {
-    return res.statusCode < 400 //TODO: 2xx, 3xx
-  }
-});
+// morganBody(app, {
+//   noColors: true,
+//   stream: loggerStream,
+//   skip: function(req, res) {
+//     return res.statusCode < 400 //TODO: 2xx, 3xx
+//   }
+// });
 
 // GETTING PORT
 const port = process.env.PORT || 3000;
