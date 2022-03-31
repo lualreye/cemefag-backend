@@ -8,14 +8,13 @@ const propertiesKey = getProperties()
 const tokenSign = async (user) => {
   const sign = jwt.sign(
     {
-      [propertiesKey.id]: user[propertiesKey.id],
-      role: user.role
+      [propertiesKey.us_id]: user[propertiesKey.s_id],
     },
-    JWT_SECRET
-    ,{
-      expiresIn: "10h"
+    JWT_SECRET,
+    {
+      expiresIn: "10h",
     }
-  )
+  );
   return sign
 };
 
