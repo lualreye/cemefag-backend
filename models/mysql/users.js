@@ -4,6 +4,11 @@ const { DataTypes } = require("sequelize");
 const Users = sequelize.define(
   "usuario",
   {
+    us_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      primaryKey: true,
+    },
     us_codigo: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -25,11 +30,11 @@ const Users = sequelize.define(
     },
   },
   {
-    freezeTableName: true
+    freezeTableName: true,
+    timestamps: false,
+    createdAt: false,
+    updatedAt: false,
   },
-  {
-    timestamps: false
-  }
 );
 
 module.exports = Users;
