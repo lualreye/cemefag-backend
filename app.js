@@ -16,7 +16,10 @@ const app = express();
 const ENGINE_DB = process.env.ENGINE_DB
 
 // PREVENTING CORS TROUBLESHOT IN BROWSER
-app.use(cors());
+const whiteList = ["http://localhost:8080"]
+app.use(cors({
+  origin: whiteList
+}));
 
 // PREPARED TO RECEIVE JSON
 app.use(express.json());
