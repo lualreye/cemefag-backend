@@ -2,40 +2,46 @@ const { sequelize } = require("../../config/mysql");
 const { DataTypes } = require("sequelize");
 
 const Patient = sequelize.define(
-  "patient",
+  "paciente",
   {
-    cedula: {
+    pc_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      primaryKey: true
+    },
+    pc_cedula: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    name: {
+    pc_nombres: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    lastname: {
+    pc_apellidos: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    birthday: {
+    pc_fecha_nacim: {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    email: {
+    pc_mail: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
     },
-    phone: {
+    pc_celular: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    product: {
+    pc_producto: {
       type: DataTypes.NUMBER,
       allowNull: false,
     },
   },
   {
-    timestamps: true,
+    timestamps: false,
+    freezeTableName: true
   }
 );
 
