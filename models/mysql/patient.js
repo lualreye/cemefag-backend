@@ -7,11 +7,12 @@ const Patient = sequelize.define(
     pc_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      primaryKey: true
+      primaryKey: true,
     },
     pc_cedula: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     pc_apellidos: {
       type: DataTypes.STRING,
@@ -41,7 +42,7 @@ const Patient = sequelize.define(
   },
   {
     timestamps: false,
-    freezeTableName: true
+    freezeTableName: true,
   }
 );
 

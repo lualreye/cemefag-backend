@@ -5,7 +5,7 @@ const { handleHttpError } = require("../utils/customHttpErros");
 // GETTING PATIENTS LIST
 const getPatients = async (req, res) => {
   try {
-    const user = req.user
+    const user = req.user;
     const data = await patientModel.findAll({});
     res.send({ data, user });
   } catch (e) {
@@ -29,10 +29,12 @@ const getPatient = async (req, res) => {
 const createPatient = async (req, res) => {
   try {
     const body = matchedData(req);
+    console.log({ body });
     const data = await patientModel.create(body);
+    console.log({ data });
     res.send({ data });
   } catch (e) {
-    handleHttpError(res, "ERROR_CREATE_PATIENT");
+    handleHttpError(res, "ERROR_CREATE_PATIENT", e);
   }
 };
 
@@ -55,7 +57,7 @@ const deletePatient = async (req, res) => {
     const data = await patientModel.delete({ _id: id });
     res.send({ data });
   } catch (e) {
-    console.log(e)
+    console.log(e);
     handleHttpError(res, "ERROR_DELETE_PATIENT");
   }
 };
