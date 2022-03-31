@@ -26,10 +26,11 @@ const authMiddleware = async (req, res, next) => {
       [propertiesKey.us_id] : dataToken[propertiesKey.us_id]
     }
 
-    console.log('query', query)
-
+    console.log(query)
     //TODO: searching according to the database type
-    const user = await userModel.findOne({where: {us_id: query}})
+    const user = await userModel.findOne({where: query})
+
+    console.log(user)
     req.user = user
 
     next()
