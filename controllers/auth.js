@@ -9,7 +9,6 @@ const registerController = async (req, res) => {
     req = matchedData(req);
     const hashPassword = await md5(req.us_clave);
     const body = { ...req, us_clave: hashPassword };
-    console.log(body);
     const userData = await userModel.create(body);
     userData.set("us_clave", undefined, { strict: false });
 
