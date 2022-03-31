@@ -8,13 +8,14 @@ const authMiddleware = async (req, res, next) => {
   try {
 
     if(!req.headers.authorization) {
-      console.log(req.headers)
       handleHttpError(res, "NOT_TOKEN", 401)
     }
 
     const token = req.headers.authorization.split(" ").pop()
 
+
     const dataToken = await verifyToken(token)
+
 
     if(!dataToken) {
       handleHttpError(res, "ERROR_NO_PAYLOAD_DATA", 401);
@@ -22,11 +23,13 @@ const authMiddleware = async (req, res, next) => {
     }
 
     const query = {
-      [propertiesKey.id] : dataToken[propertiesKey.id]
+      [propertiesKey.us_id] : dataToken[propertiesKey.us_id]
     }
 
+    console.log('query', query)
+
     //TODO: searching according to the database type
-    const user = await userModel.findOne(query)
+    const user = await userModel.findOne({where: {us_id: query}})
     req.user = user
 
     next()
