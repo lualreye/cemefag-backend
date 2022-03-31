@@ -13,8 +13,8 @@ const validatorRegisterItem = [
 ];
 
 const validatorLoginItem = [
-  check("us_nombre").exists().notEmpty().isLength({ min: 3, max: 99 }),
-  check("us_clave").exists().notEmpty().isLength({ min: 3, max: 15 }),
+  check("us_nombre").exists().notEmpty(),
+  check("us_clave").exists().notEmpty(),
   (req, res, next) => {
     validateResults(req, res, next);
   },
