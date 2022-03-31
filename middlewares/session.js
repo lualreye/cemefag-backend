@@ -30,7 +30,6 @@ const authMiddleware = async (req, res, next) => {
     //TODO: searching according to the database type
     const user = await userModel.findOne({where: query})
 
-    console.log(user)
     req.user = user
 
     next()
