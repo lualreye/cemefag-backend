@@ -12,12 +12,11 @@ const {
   deletePatient,
 } = require("../controllers/patient");
 const { authMiddleware } = require("../middlewares/session");
-const { checkRole } = require("../middlewares/rol");
 
 // TODO http://localhost/patient GET,POST, DELETE, PUT
 
 // GETTING PATIENTS LIST
-router.get("/", authMiddleware, checkRole(["user"]), getPatients);
+router.get("/", authMiddleware, getPatients);
 
 // GETTING PATIENT DETAILED
 router.get("/:id", authMiddleware, validatorGetPatient, getPatient);
