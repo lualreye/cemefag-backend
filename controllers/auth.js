@@ -23,28 +23,29 @@ const registerController = async (req, res) => {
 
     res.send({ data });
   } catch (e) {
-    handleHttpError(res, "ERROR_REGISTER_USER_mysql", e);
+    handleHttpError(res, "ERROR_REGISTER_USER_mysql");
   }
 };
 
 const loginController = async (req, res) => {
   try {
     req = matchedData(req);
+    console.log(req)
     const user = await userModel
-      .findOne({ userName: req.userName })
+      .findOne({ us_nombre: req.us_usuario })
     if (!user) {
       handleHttpError(res, "USER_DOES_NOT_EXIST");
       return;
     }
 
-    const hashPassword = user.get("userPassword");
-    const check = await compare(req.userPassword, hashPassword);
+    const hashPassword = user.get("us_clave");
+    const check = md5(req.us_clave) ===  hashPassword;
     if (!check) {
       handleHttpError(res, "PASSWORD_INVALID", 401);
       return;
     }
 
-    user.set("userPassword", undefined, { strict: false });
+    user.set("us_clave", undefined, { strict: false });
     const data = {
       token: await tokenSign(user),
       user,
@@ -52,7 +53,7 @@ const loginController = async (req, res) => {
 
     res.send({ data });
   } catch (e) {
-    handleHttpError(res, "ERROR_LOGIN_USER");
+    handleHttpError(res, "ERROR_LOGIN_USER", e);
   }
 };
 
