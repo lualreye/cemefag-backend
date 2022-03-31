@@ -4,10 +4,6 @@ const { DataTypes } = require("sequelize");
 const Users = sequelize.define(
   "usuario",
   {
-    us_id: {
-      type: DataTypes.NUMBER,
-      allowNull: false,
-    },
     us_codigo: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -27,6 +23,12 @@ const Users = sequelize.define(
     us_estado: {
       type: DataTypes.INTEGER,
     },
+  },
+  {
+    freezeTableName: true
+  },
+  {
+    timestamps: false
   }
 );
 
