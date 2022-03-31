@@ -13,16 +13,16 @@ const Patient = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    pc_nombres: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     pc_apellidos: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    pc_fecha_nacim: {
-      type: DataTypes.DATE,
+    pc_nombres: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    pc_celular: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     pc_mail: {
@@ -30,13 +30,13 @@ const Patient = sequelize.define(
       unique: true,
       allowNull: false,
     },
-    pc_celular: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    pc_producto: {
+    pr_producto: {
       type: DataTypes.NUMBER,
       allowNull: false,
+    },
+    pr_fecha_nacim: {
+      type: DataTypes.DATE,
+      allowNull: true,
     },
   },
   {
