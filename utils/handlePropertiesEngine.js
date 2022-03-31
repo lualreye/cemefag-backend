@@ -5,7 +5,7 @@ const getProperties = () => {
       id: '_id'
     },
     mysql: {
-      id: 'id'
+      us_id: 'us_id'
     }
   }
   return data[ENGINE_DB]
