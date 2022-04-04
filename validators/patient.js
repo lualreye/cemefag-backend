@@ -15,7 +15,7 @@ const validatorCreatePatient = [
 ];
 
 const validatorGetPatient = [
-  check("pc_id").exists().notEmpty(),
+  check("pc_cedula").exists().notEmpty(),
   (req, res, next) => {
     validateResults(req, res, next);
   },
