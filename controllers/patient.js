@@ -17,11 +17,11 @@ const getPatients = async (req, res) => {
 const getPatient = async (req, res) => {
   try {
     req = matchedData(req);
-    const { id } = req;
-    const data = await patientModel.findById(id);
+    const { pc_id } = req;
+    const data = await patientModel.findByPk(pc_id);
     res.send({ data });
   } catch (e) {
-    handleHttpError(res, "ERROR_GET_PATIENT");
+    handleHttpError(res, "ERROR_GET_PATIENT",e);
   }
 };
 
