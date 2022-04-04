@@ -17,8 +17,13 @@ const getPatients = async (req, res) => {
 const getPatient = async (req, res) => {
   try {
     req = matchedData(req);
-    const { pc_id } = req;
-    const data = await patientModel.findByPk(pc_id);
+    const { pc_cedula } = req;
+    console.log(pc_cedula)
+    const data = await patientModel.findOne({
+      where: {
+        pc_cedula: pc_cedula
+      }
+    });
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_GET_PATIENT",e);
