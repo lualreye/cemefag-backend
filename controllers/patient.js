@@ -29,9 +29,7 @@ const getPatient = async (req, res) => {
 const createPatient = async (req, res) => {
   try {
     const body = matchedData(req);
-    console.log({ body });
     const data = await patientModel.create(body);
-    console.log({ data });
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_CREATE_PATIENT", e);
@@ -43,7 +41,6 @@ const updatePatient = async (req, res) => {
   try {
     const { id, ...body } = matchedData(req);
     const data = await patientModel.findOneAndUpdate(id, body);
-    console.log(data);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_PATIENT");
@@ -57,7 +54,6 @@ const deletePatient = async (req, res) => {
     const data = await patientModel.delete({ _id: id });
     res.send({ data });
   } catch (e) {
-    console.log(e);
     handleHttpError(res, "ERROR_DELETE_PATIENT");
   }
 };
