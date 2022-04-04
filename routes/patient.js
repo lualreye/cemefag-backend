@@ -19,7 +19,7 @@ const { authMiddleware } = require("../middlewares/session");
 router.get("/", authMiddleware, getPatients);
 
 // GETTING PATIENT DETAILED
-router.get("/:id", authMiddleware, validatorGetPatient, getPatient);
+router.get("/:pc_id", authMiddleware, validatorGetPatient, getPatient);
 
 // CREATING NEW PATIENT
 router.post("/", authMiddleware, validatorCreatePatient, createPatient);
