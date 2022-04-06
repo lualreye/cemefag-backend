@@ -4,50 +4,29 @@ const { DataTypes } = require("sequelize");
 const Agenda = sequelize.define(
   "agenda",
   {
-    patient: {
+    ag_id: {
       type: DataTypes.NUMBER,
-      allowNull: false,
+      primaryKey: true,
     },
-    product: {
-      type: DataTypes.NUMBER,
-      allowNull: false,
-    },
-    speciality: {
-      type: DataTypes.NUMBER,
-      allowNull: false,
-    },
-    doctor: {
-      type: DataTypes.NUMBER,
-      allowNull: false,
-    },
-    user: {
-      type: DataTypes.NUMBER,
-      allowNull: false,
-    },
-    dateReg: {
+    ag_fecha_reg: {
       type: DataTypes.DATE,
     },
-    dateAge: {
-      type: DataTypes.DATE,
+    as_fecha_age: {
+      type: DataTypes.DATE
     },
-    payform: {
-      type: DataTypes.NUMBER,
-      allowNull: false,
+    ag_cobertura: {
+      type: DataTypes.NUMBER
     },
-    coverage: {
-      type: DataTypes.STRING,
+    ag_valor: {
+      type: DataTypes.NUMBER
     },
-    value: {
-      type: DataTypes.NUMBER,
-      allowNull: false,
-    },
-    treated: {
-      type: DataTypes.BOOLEAN,
-    },
+    ag_atendido: {
+      type: DataTypes.BOOLEAN
+    }
   },
   {
     timestamp: false,
-    freezeTableName: true
+    freezeTableName: true,
   }
 );
 
