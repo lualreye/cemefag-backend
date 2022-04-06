@@ -18,7 +18,6 @@ const getPatient = async (req, res) => {
   try {
     req = matchedData(req);
     const { pc_cedula } = req;
-    console.log(pc_cedula)
     const data = await patientModel.findOne({
       where: {
         pc_cedula: pc_cedula
