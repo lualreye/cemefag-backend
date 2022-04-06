@@ -1,5 +1,10 @@
-const { agendaModel } = require("../models/index");
 const { handleHttpError } = require("../utils/customHttpErros");
+const {
+  agendaModel,
+  productModel,
+  payformModel,
+  doctorModel,
+} = require("../models/index");
 
 // GETTING PATIENT DETAIL
 
@@ -14,8 +19,27 @@ const getAgenda = async (req, res) => {
     const me_id = data.me_id;
     const us_id = data.us_id;
     const tp_id = data.tp_id;
-    console.log(pc_id,pr_id, es_id, me_id, us_id, tp_id)
-    res.send({ data });
+    const product = await productModel.findOne({
+      where: {
+        pr_id: pr_id,
+        pr_estado: 0,
+      },
+    });
+    const payform = await payformModel.findOne({
+      where: {
+        tp_id: tp_id,
+        tp_estado: 0,
+      },
+    });
+    const doctor = await doctorModel.findDoctorInformation(me_id);
+    const agendaResult = {
+      data,
+      product,
+      payform,
+      doctor
+    }
+    console.log(agendaResult)
+    res.send({ agendaResult });
   } catch (e) {
     handleHttpError(res, "CANNOT_GET_AGENDA_DETAIL", e);
   }
