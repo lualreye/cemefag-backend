@@ -1,12 +1,19 @@
 const { sequelize } = require("../../config/mysql");
 const { DataTypes } = require("sequelize");
 
-const Product = sequelize.define(
-  "producto",
+const Speciality = sequelize.define(
+  "especialidad",
   {
-    pr_nombre: {
-      type: DataTypes.STRING,
+    es_id: {
+      type: DataTypes.NUMBER,
+      primaryKey: true
     },
+    es_nombre: {
+      type: DataTypes.STRING
+    },
+    es_estado: {
+      type: DataTypes.NUMBER
+    }
   },
   {
     timestamps: false,
@@ -16,4 +23,12 @@ const Product = sequelize.define(
   }
 );
 
-module.exports = Product;
+Speciality.findDoctor = function() {
+  Speciality.hasMany(DoctorSpeciality, {
+    foreignKey: "es_id",
+    as: "doc_especialidades"
+  })
+  return Speciality.findAll({include: "doc_especialidades"})
+}
+
+module.exports = Speciality;
