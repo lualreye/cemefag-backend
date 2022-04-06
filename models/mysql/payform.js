@@ -1,19 +1,19 @@
 const { sequelize } = require("../../config/mysql");
 const { DataTypes } = require("sequelize");
 
-const Product = sequelize.define(
-  "producto",
+const Payform = sequelize.define(
+  "tipo_pago",
   {
-    pr_id: {
+    tp_id: {
       type: DataTypes.NUMBER,
       primaryKey: true
     },
-    pr_nombre: {
-      type: DataTypes.STRING,
+    tp_nombre: {
+      type: DataTypes.STRING
     },
-    pr_estado: {
-      type: DataTypes.STRING,
-    },
+    tp_estado: {
+      type: DataTypes.NUMBER
+    }
   },
   {
     timestamps: false,
@@ -23,4 +23,4 @@ const Product = sequelize.define(
   }
 );
 
-module.exports = Product;
+module.exports = Payform;
