@@ -6,6 +6,9 @@ const models = {
   patientModel: require(`${pathModels}/patient`),
   userModel: require(`${pathModels}/users`),
   agendaModel: require(`${pathModels}/agenda`),
+  doctorModel: require(`${pathModels}/doctor`),
+  payformModel: require(`${pathModels}/payform`),
+  productModel: require(`${pathModels}/product`),
 };
 
 module.exports = models;
