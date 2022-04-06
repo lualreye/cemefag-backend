@@ -4,6 +4,7 @@ const {
   productModel,
   payformModel,
   doctorModel,
+  specialityModel,
 } = require("../models/index");
 
 // GETTING PATIENT DETAIL
@@ -31,14 +32,26 @@ const getAgenda = async (req, res) => {
         tp_estado: 0,
       },
     });
-    const doctor = await doctorModel.findDoctorInformation(me_id);
+    const doctor = await doctorModel.findOne({
+      where: {
+        me_id: me_id,
+        me_estado: 0,
+      },
+    });
+    const speciality = await specialityModel.findOne({
+      where: {
+        es_id: es_id,
+        es_estado: 0,
+      },
+    });
     const agendaResult = {
       data,
       product,
       payform,
-      doctor
-    }
-    console.log(agendaResult)
+      doctor,
+      speciality,
+    };
+    console.log(agendaResult);
     res.send({ agendaResult });
   } catch (e) {
     handleHttpError(res, "CANNOT_GET_AGENDA_DETAIL", e);
