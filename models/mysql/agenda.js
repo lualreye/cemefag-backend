@@ -1,6 +1,7 @@
 const { sequelize } = require("../../config/mysql");
 const { DataTypes } = require("sequelize");
 const Patient = require("./patient");
+const Product = require("./product")
 
 const Agenda = sequelize.define(
   "agenda",
@@ -51,15 +52,5 @@ const Agenda = sequelize.define(
   }
 );
 
-// IMPLEMENTING PERSONALIZE MODEL
-
-Agenda.findOneAgenda = function (pc_id) {
-  Agenda.belongsTo(Patient, {
-    foreignKey: "pc_id",
-    as: "paciente",
-  });
-
-  return Agenda.findOne({ where: { pc_id }, include: "paciente" });
-};
 
 module.exports = Agenda;
