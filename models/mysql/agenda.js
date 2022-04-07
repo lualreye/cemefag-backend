@@ -1,7 +1,5 @@
 const { sequelize } = require("../../config/mysql");
 const { DataTypes } = require("sequelize");
-const Patient = require("./patient");
-const Product = require("./product")
 
 const Agenda = sequelize.define(
   "agenda",
