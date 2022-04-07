@@ -9,6 +9,7 @@ const models = {
   doctorModel: require(`${pathModels}/doctor`),
   payformModel: require(`${pathModels}/payform`),
   productModel: require(`${pathModels}/product`),
+  specialityModel: require(`${pathModels}/speciality`),
 };
 
 module.exports = models;
