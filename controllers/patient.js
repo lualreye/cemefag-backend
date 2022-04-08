@@ -20,12 +20,12 @@ const getPatient = async (req, res) => {
     const { pc_cedula } = req;
     const data = await patientModel.findOne({
       where: {
-        pc_cedula: pc_cedula
-      }
+        pc_cedula: pc_cedula,
+      },
     });
     res.send({ data });
   } catch (e) {
-    handleHttpError(res, "ERROR_GET_PATIENT",e);
+    handleHttpError(res, "ERROR_GET_PATIENT", e);
   }
 };
 
@@ -43,9 +43,18 @@ const createPatient = async (req, res) => {
 // UPDATING PATIENT DETAILS
 const updatePatient = async (req, res) => {
   try {
-    const { id, ...body } = matchedData(req);
-    const data = await patientModel.findOneAndUpdate(id, body);
-    res.send({ data });
+    const id = req.params.id
+    const body = req.body
+    const data = await patientModel.update(body, {
+      where: {
+        pc_id: id
+      }
+    });
+    if(data[0] === 1) {
+      res.send({msg: "Usuario actualizado"});
+    } else {
+      res.send({msg: "Actualizado sin cambios"})
+    }
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_PATIENT");
   }
