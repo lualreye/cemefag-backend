@@ -28,9 +28,11 @@ const Speciality = sequelize.define(
 Speciality.findDoctor = function (es_id) {
   Speciality.hasMany(SpecialityByDoctor, {
     foreignKey: "es_id",
+    as:"spe_rel_doc"
   });
   return Speciality.findAll({
     where: { es_id: es_id },
+    include: "spe_rel_doc"
   });
 };
 
