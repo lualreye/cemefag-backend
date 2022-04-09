@@ -1,7 +1,7 @@
 const { sequelize } = require("../../config/mysql");
 const { DataTypes } = require("sequelize");
 
-const Schedule = require("./schedule");
+// const Schedule = require("./schedule");
 
 const Doctor = sequelize.define(
   "medico",
@@ -34,12 +34,12 @@ const Doctor = sequelize.define(
   }
 );
 
-Doctor.findDoctorInformation = function (me_id) {
-  Doctor.hasOne(Schedule, {
-    foreignKey: "me_id",
-    as: "horario",
-  });
-  return Doctor.findOne({ where: { me_id: me_id }, include: "horario" });
-};
+// Doctor.findDoctorInformation = function (me_id) {
+//   Doctor.hasOne(Schedule, {
+//     foreignKey: "me_id",
+//     as: "horario",
+//   });
+//   return Doctor.findOne({ where: { me_id: me_id }, include: "horario" });
+// };
 
 module.exports = Doctor;
