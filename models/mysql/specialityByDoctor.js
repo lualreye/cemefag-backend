@@ -1,8 +1,6 @@
 const { sequelize } = require("../../config/mysql");
 const { DataTypes } = require("sequelize");
 
-// const Doctor = require("./doctor");
-
 const SpecialityByDoctor = sequelize.define(
   "especialidad_medico",
   {
@@ -24,6 +22,5 @@ const SpecialityByDoctor = sequelize.define(
     updatedAt: false,
   }
 );
-
 
 module.exports = SpecialityByDoctor;

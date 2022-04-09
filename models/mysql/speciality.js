@@ -30,7 +30,7 @@ Speciality.findDoctor = function (es_id) {
     foreignKey: "es_id",
     as:"spe_rel_doc"
   });
-  return Speciality.findAll({
+  return Speciality.findOne({
     where: { es_id: es_id },
     include: "spe_rel_doc"
   });
