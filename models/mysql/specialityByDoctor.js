@@ -25,13 +25,5 @@ const SpecialityByDoctor = sequelize.define(
   }
 );
 
-// DoctorSpeciality.findAllDoctors = function () {
-//   DoctorSpeciality.belongsToMany(Doctor, {
-//     foreignKey: "me_id",
-//     as: "doctores",
-//   });
-
-//   return DoctorSpeciality.findAll({ include: "doctores" });
-// };
 
 module.exports = SpecialityByDoctor;
