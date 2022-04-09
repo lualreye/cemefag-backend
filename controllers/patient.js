@@ -43,17 +43,17 @@ const createPatient = async (req, res) => {
 // UPDATING PATIENT DETAILS
 const updatePatient = async (req, res) => {
   try {
-    const id = req.params.id
-    const body = req.body
+    const id = req.params.id;
+    const body = req.body;
     const data = await patientModel.update(body, {
       where: {
-        pc_id: id
-      }
+        pc_id: id,
+      },
     });
-    if(data[0] === 1) {
-      res.send({msg: "Usuario actualizado"});
+    if (data[0] === 1) {
+      res.send({ msg: "Usuario actualizado", data });
     } else {
-      res.send({msg: "Actualizado sin cambios"})
+      res.send({ msg: "Actualizado sin cambios", data });
     }
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_PATIENT");
