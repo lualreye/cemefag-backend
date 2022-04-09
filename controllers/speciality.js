@@ -16,12 +16,11 @@ const getSpecialities = async (req, res) => {
 const getSpecialityRelation = async (req, res) => {
   try {
     const user = req.user;
-    const relationId = req.params;
+    const relationId = req.params.es_id;
     const data = await specialityModel.findDoctor(relationId);
-    console.log(data);
     res.send({ data, user });
   } catch (err) {
-    handleHttpError(res, "CANNOT_GET_RELATIONS", err);
+    handleHttpError(res, "CANNOT_GET_RELATIONS_DOCTORS_SPECIALITY", err);
   }
 };
 
