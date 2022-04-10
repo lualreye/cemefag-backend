@@ -18,16 +18,18 @@ const getSpecialityRelation = async (req, res) => {
     const user = req.user;
     const relationId = req.params.es_id;
     const data = await specialityModel.findDoctor(relationId);
-    const doctorsRelated = data.spe_rel_doc;
+    const doctorsRelated = data.especialidad_medicos;
     const doctorsResult = [];
+
+    console.log(doctorsRelated);
 
     for (let i = 0; i < doctorsRelated.length; i++) {
       const res = await doctorModel.findByPk(doctorsRelated[i].me_id);
       doctorsResult.push(res);
     }
 
-    const doctors = await Promise.all(doctorsResult);
-    res.send({ doctors, user });
+    const doctors = await Promise.allSettled(doctorsResult);
+    res.send({ data, doctors, user });
   } catch (err) {
     handleHttpError(res, "CANNOT_GET_RELATIONS_DOCTORS_SPECIALITY", err);
   }
